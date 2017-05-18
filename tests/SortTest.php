@@ -8,16 +8,27 @@ use PHPUnit\Framework\TestCase;
  */
 class SortTest extends TestCase
 {
-    private $array = [
-        ['name' => 'example04', 'direction' => 'down'],
-        ['name' => 'example00', 'direction' => 'up'],
-        ['name' => 'example02', 'direction' => 'right'],
-        ['name' => 'example06', 'direction' => 'left'],
-        ['name' => 'example01', 'direction' => 'up'],
-        ['name' => 'example03', 'direction' => 'right'],
-        ['name' => 'example05', 'direction' => 'down'],
-        ['name' => 'example07', 'direction' => 'left'],
-    ];
+    private $array;
+    private $pamArray;
+
+    /**
+     * This will be called before each test method to make sure that we are shuffling array to its initial state.
+     */
+    protected function setUp()
+    {
+        $this->array = [
+            ['name' => 'example', 'direction' => 'down'],
+            ['name' => 'example', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'left'],
+            ['name' => 'example', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'down'],
+            ['name' => 'example', 'direction' => 'left'],
+        ];
+
+        $this->pamArray = new PamArray($this->array);
+    }
 
     /**
      * Tests output of the PamArray->sort method with order up, right, down, left.
@@ -26,18 +37,19 @@ class SortTest extends TestCase
     {
         $order = ['up', 'right', 'down', 'left'];
         $expected = [
-            ['name' => 'example00', 'direction' => 'up'],
-            ['name' => 'example01', 'direction' => 'up'],
-            ['name' => 'example02', 'direction' => 'right'],
-            ['name' => 'example03', 'direction' => 'right'],
-            ['name' => 'example04', 'direction' => 'down'],
-            ['name' => 'example05', 'direction' => 'down'],
-            ['name' => 'example06', 'direction' => 'left'],
-            ['name' => 'example07', 'direction' => 'left'],
+            ['name' => 'example', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'down'],
+            ['name' => 'example', 'direction' => 'down'],
+            ['name' => 'example', 'direction' => 'left'],
+            ['name' => 'example', 'direction' => 'left'],
         ];
 
         $pamArray = new PamArray($this->array);
-        $this->assertEquals($expected, $pamArray->sort($order), $message = 'Array sorted wrong!');
+        $actual = $this->pamArray->sort($order);
+        $this->assertEquals($expected, $this->pamArray->sort($order), $message = 'Array sorted wrong!');
     }
 
     /**
@@ -47,18 +59,18 @@ class SortTest extends TestCase
     {
         $order = ['right', 'down', 'left', 'up'];
         $expected = [
-            ['name' => 'example02', 'direction' => 'right'],
-            ['name' => 'example03', 'direction' => 'right'],
-            ['name' => 'example04', 'direction' => 'down'],
-            ['name' => 'example05', 'direction' => 'down'],
-            ['name' => 'example06', 'direction' => 'left'],
-            ['name' => 'example07', 'direction' => 'left'],
-            ['name' => 'example00', 'direction' => 'up'],
-            ['name' => 'example01', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'down'],
+            ['name' => 'example', 'direction' => 'down'],
+            ['name' => 'example', 'direction' => 'left'],
+            ['name' => 'example', 'direction' => 'left'],
+            ['name' => 'example', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'up'],
         ];
 
         $pamArray = new PamArray($this->array);
-        $this->assertEquals($expected, $pamArray->sort($order), $message = 'Array sorted wrong!');
+        $this->assertEquals($expected, $this->pamArray->sort($order), $message = 'Array sorted wrong!');
     }
 
     /**
@@ -68,18 +80,18 @@ class SortTest extends TestCase
     {
         $order = ['down', 'left', 'up', 'right'];
         $expected = [
-            ['name' => 'example04', 'direction' => 'down'],
-            ['name' => 'example05', 'direction' => 'down'],
-            ['name' => 'example06', 'direction' => 'left'],
-            ['name' => 'example07', 'direction' => 'left'],
-            ['name' => 'example00', 'direction' => 'up'],
-            ['name' => 'example01', 'direction' => 'up'],
-            ['name' => 'example02', 'direction' => 'right'],
-            ['name' => 'example03', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'down'],
+            ['name' => 'example', 'direction' => 'down'],
+            ['name' => 'example', 'direction' => 'left'],
+            ['name' => 'example', 'direction' => 'left'],
+            ['name' => 'example', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'right'],
         ];
 
         $pamArray = new PamArray($this->array);
-        $this->assertEquals($expected, $pamArray->sort($order), $message = 'Array sorted wrong!');
+        $this->assertEquals($expected, $this->pamArray->sort($order), $message = 'Array sorted wrong!');
     }
 
     /**
@@ -89,17 +101,17 @@ class SortTest extends TestCase
     {
         $order = ['left', 'up', 'right', 'down'];
         $expected = [
-            ['name' => 'example06', 'direction' => 'left'],
-            ['name' => 'example07', 'direction' => 'left'],
-            ['name' => 'example00', 'direction' => 'up'],
-            ['name' => 'example01', 'direction' => 'up'],
-            ['name' => 'example02', 'direction' => 'right'],
-            ['name' => 'example03', 'direction' => 'right'],
-            ['name' => 'example04', 'direction' => 'down'],
-            ['name' => 'example05', 'direction' => 'down'],
+            ['name' => 'example', 'direction' => 'left'],
+            ['name' => 'example', 'direction' => 'left'],
+            ['name' => 'example', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'down'],
+            ['name' => 'example', 'direction' => 'down'],
         ];
 
         $pamArray = new PamArray($this->array);
-        $this->assertEquals($expected, $pamArray->sort($order), $message = 'Array sorted wrong!');
+        $this->assertEquals($expected, $this->pamArray->sort($order), $message = 'Array sorted wrong!');
     }
 }
