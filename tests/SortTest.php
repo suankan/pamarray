@@ -4,6 +4,8 @@ namespace pamarray;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * Running unit tests over the special way how PAM arrays should be sorted.
+ *
  * @covers Sort
  */
 class SortTest extends TestCase
@@ -47,9 +49,9 @@ class SortTest extends TestCase
             ['name' => 'example', 'direction' => 'left'],
         ];
 
-        $pamArray = new PamArray($this->array);
         $actual = $this->pamArray->sort($order);
-        $this->assertEquals($expected, $this->pamArray->sort($order), $message = 'Array sorted wrong!');
+
+        $this->assertEquals($expected, $actual, $message = 'Array sorted wrong!');
     }
 
     /**
@@ -69,8 +71,9 @@ class SortTest extends TestCase
             ['name' => 'example', 'direction' => 'up'],
         ];
 
-        $pamArray = new PamArray($this->array);
-        $this->assertEquals($expected, $this->pamArray->sort($order), $message = 'Array sorted wrong!');
+        $actual = $this->pamArray->sort($order);
+
+        $this->assertEquals($expected, $actual, $message = 'Array sorted wrong!');
     }
 
     /**
@@ -90,8 +93,9 @@ class SortTest extends TestCase
             ['name' => 'example', 'direction' => 'right'],
         ];
 
-        $pamArray = new PamArray($this->array);
-        $this->assertEquals($expected, $this->pamArray->sort($order), $message = 'Array sorted wrong!');
+        $actual = $this->pamArray->sort($order);
+
+        $this->assertEquals($expected, $actual, $message = 'Array sorted wrong!');
     }
 
     /**
@@ -111,7 +115,8 @@ class SortTest extends TestCase
             ['name' => 'example', 'direction' => 'down'],
         ];
 
-        $pamArray = new PamArray($this->array);
-        $this->assertEquals($expected, $this->pamArray->sort($order), $message = 'Array sorted wrong!');
+        $actual = $this->pamArray->sort($order);
+
+        $this->assertEquals($expected, $actual, $message = 'Array sorted wrong!');
     }
 }
