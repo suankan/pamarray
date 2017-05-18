@@ -1,4 +1,4 @@
-#Description
+# Description
 
 Class classes/PamArray.php implements special way for sorting PAM arrays according to custom user-specified order.
 
@@ -35,7 +35,7 @@ Example sort result:
         ];
 ```
 
-#Implementation logic
+# Implementation logic
 We will be comparing array items as in above example.
 
 Comparing will be done according to order specified by user in a human-readable way (see above example).
@@ -44,7 +44,7 @@ The basis of determining which array element is bigger will be comparing keys of
 
 E.g. for order like `$order = ['up', 'right', 'down', 'left'];`, elements in a given $array which have elements `$array['direction'] = 'up'` will have `key = 0` and elements `$array['direction'] = 'right'` will have `key = 1` and so on. And comparison of two `$array` elements is done by comparing the above keys. 
 
-#Testing:
+# Testing
 1. Download phpunit https://phar.phpunit.de/phpunit-5.7.19.phar and make it executable.
 
 2. Execute tests:
