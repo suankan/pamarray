@@ -119,4 +119,32 @@ class SortTest extends TestCase
 
         $this->assertEquals($expected, $actual, $message = 'Array sorted wrong!');
     }
+
+    public function testSortWithUnexpectedDirection()
+    {
+        $order = ['up', 'right', 'down', 'left'];
+
+        $array = [
+            ['name' => 'example', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'wrong'],
+            ['name' => 'example', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'next'],
+            ['name' => 'example', 'direction' => 'left'],
+            ['name' => 'example', 'direction' => 'down'],
+        ];
+
+        $expected = [
+            ['name' => 'example', 'direction' => 'up'],
+            ['name' => 'example', 'direction' => 'right'],
+            ['name' => 'example', 'direction' => 'down'],
+            ['name' => 'example', 'direction' => 'left'],
+            ['name' => 'example', 'direction' => 'wrong'],
+            ['name' => 'example', 'direction' => 'next'],
+        ];
+
+        $this->pamArray = new PamArray($array);
+        $actual = $this->pamArray->sort($order);
+
+        $this->assertEquals($expected, $actual, $message = 'Array sorted wrong!');
+    }
 }

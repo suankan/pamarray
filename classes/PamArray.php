@@ -43,12 +43,25 @@ class PamArray
      */
     private function sortMethod($a, $b)
     {
-        $aKey = $this->getKeyOfMatchingElement($a['direction'], $this->order);
-        $bKey = $this->getKeyOfMatchingElement($b['direction'], $this->order);
+        $aKey = array_search($a['direction'], $this->order);
+        $bKey = array_search($b['direction'], $this->order);
 
-        if ($aKey == $bKey and $aKey !== false) {
+
+        if ($aKey !== false and $bKey === false)
+        {
+            return -1;
+        }
+
+        if ($aKey === false and $bKey !== false)
+        {
+            return 1;
+        }
+
+        if ($aKey == $bKey and $aKey !== false)
+        {
             return 0;
         }
+
 
         return ($aKey < $bKey) ? -1 : 1;
     }
